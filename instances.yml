@@ -1,23 +1,15 @@
 ---
 tarantool-rust-crud.router:
-  advertise_uri: localhost:3301
+  advertise_uri: localhost:13501
   http_port: 8081
 
 tarantool-rust-crud.s1-master:
-  advertise_uri: localhost:3302
+  advertise_uri: localhost:13502
   http_port: 8082
 
-tarantool-rust-crud.s1-replica:
-  advertise_uri: localhost:3303
-  http_port: 8083
-
 tarantool-rust-crud.s2-master:
-  advertise_uri: localhost:3304
+  advertise_uri: localhost:13504
   http_port: 8084
-
-tarantool-rust-crud.s2-replica:
-  advertise_uri: localhost:3305
-  http_port: 8085
 
 tarantool-rust-crud-stateboard:
   listen: localhost:4401

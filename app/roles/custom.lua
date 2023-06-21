@@ -1,17 +1,5 @@
 local cartridge = require('cartridge')
 
-local function init(opts) -- luacheck: no unused args
-    -- if opts.is_master then
-    -- end
-
-    local httpd = assert(cartridge.service_get('httpd'), "Failed to get httpd service")
-    httpd:route({method = 'GET', path = '/hello'}, function()
-        return {body = 'Hello world!'}
-    end)
-
-    return true
-end
-
 local function stop()
     return true
 end
@@ -21,8 +9,17 @@ local function validate_config(conf_new, conf_old) -- luacheck: no unused args
 end
 
 local function apply_config(conf, opts) -- luacheck: no unused args
-    -- if opts.is_master then
-    -- end
+    box.schema.func.create('tokio_hyper.start_server', {language = 'C', if_not_exists = true})
+    box.schema.user.grant('guest', 'execute', 'function', 'tokio_hyper.start_server', {if_not_exists = true})
+
+    box.schema.space
+       .create('fruit', {
+        format = {{'id', 'unsigned'}, {'name', 'string'}, {'weight', 'number'}},
+        if_not_exists = true,
+    })
+       :create_index('pk', { if_not_exists = true })
+
+    box.func['tokio_hyper.start_server']:call()
 
     return true
 end
