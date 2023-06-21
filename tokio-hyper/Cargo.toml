@@ -5,7 +5,7 @@ edition = "2021"
 license = "BSD-2-Clause"
 
 [dependencies]
-tarantool = { version = "0.6.4", features = ["schema", "net_box", "network_client"]}
+tarantool = { version = "1.1.0", features = ["all", "net_box", "network_client"]}
 hyper = { version = "0.14", features = ["full"] }
 tokio = { version = "1", features = ["full"] }
 futures-util = "*"
