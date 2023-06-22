@@ -1,6 +1,5 @@
 # Tarantool repro for override.fiber error
-
-https://github.com/picodata/tarantool-module/issues/22
+This error is reproduced with Tarantool 2.11.0 and cartridge-cli 2.12.4 both on macOS and Linux.
 
 ## How to run
 
