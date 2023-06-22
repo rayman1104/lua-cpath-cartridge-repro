@@ -32,7 +32,7 @@ async fn handle_req(
     fruit_rx: Arc<Mutex<UnboundedReceiver<Vec<Fruit>>>>,
 ) -> Result<Response<Body>, hyper::Error> {
     match (req.method(), req.uri().path()) {
-        // Try doing: `curl '127.0.0.1:3000/list-fruit'`
+        // Try doing: `curl '127.0.0.1:42702/list-fruit'`
         (&Method::GET, "/list-fruit") => {
             cmd_tx.send(Cmd::ListAll).unwrap();
             let fruit = fruit_rx.lock().await.recv().await.unwrap();
@@ -46,7 +46,7 @@ async fn handle_req(
         }
 
         // Try doing:
-        // `curl '127.0.0.1:3000/add-fruit' -XPOST -d '{ "id": 1, "name": "apple", "weight": 13.37 }'`
+        // `curl '127.0.0.1:42702/add-fruit' -XPOST -d '{ "id": 1, "name": "apple", "weight": 13.37 }'`
         (&Method::POST, "/add-fruit") => {
             let body = hyper::body::to_bytes(req.into_body()).await?;
             match serde_json::from_slice(body.as_ref()) {
@@ -89,7 +89,7 @@ fn start_server() {
                     }
                 });
 
-                let addr = ([127, 0, 0, 1], 3000).into();
+                let addr = ([127, 0, 0, 1], 42702).into();
                 let server = Server::bind(&addr).serve(service);
 
                 println!("Listening on http://{}", addr);
