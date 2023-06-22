@@ -1,4 +1,4 @@
-# Tarantool-module repro for override.fiber error
+# Tarantool repro for override.fiber error
 
 https://github.com/picodata/tarantool-module/issues/22
 
@@ -6,17 +6,16 @@ https://github.com/picodata/tarantool-module/issues/22
 
 ```bash
 $ make
-cd tokio-hyper && cargo build
-    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
+cd hello-world && cc -shared -o libcmodule.dylib lib.c
 cartridge build
    • Build application
    • Running `cartridge.pre-build`
    • Running `tarantoolctl rocks make`
-PANIC: unprotected error in call to Lua API (builtin/internal.loaders.lua:222: error loading module 'override.fiber' from file './tokio-hyper/target/debug/libtokio_hyper.dylib':
-	dlsym(0x9b2b3e30, luaopen_override_fiber): symbol not found)
+PANIC: unprotected error in call to Lua API (builtin/internal.loaders.lua:222: error loading module 'override.fiber' from file './hello-world/libcmodule.dylib':
+	dlsym(0x9eaa7e30, luaopen_override_fiber): symbol not found)
    ⨯ Failed to install rocks: Failed to run
 /opt/homebrew/bin/tarantoolctl rocks make
 
 exit status 1
-make: *** [build_cartridge] Error 1
+make: *** [build_cartridge_c] Error 1
 ```
