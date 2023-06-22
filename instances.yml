@@ -1,16 +1,16 @@
 ---
-tarantool-rust-crud.router:
-  advertise_uri: localhost:13501
+lua-cpath-repro.router:
+  advertise_uri: localhost:23301
   http_port: 8081
 
-tarantool-rust-crud.s1-master:
-  advertise_uri: localhost:13502
+lua-cpath-repro.s1-master:
+  advertise_uri: localhost:23302
   http_port: 8082
 
-tarantool-rust-crud.s2-master:
-  advertise_uri: localhost:13504
+lua-cpath-repro.s2-master:
+  advertise_uri: localhost:23303
   http_port: 8084
 
-tarantool-rust-crud-stateboard:
+lua-cpath-repro-stateboard:
   listen: localhost:4401
   password: passwd
