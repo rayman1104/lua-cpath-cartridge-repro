@@ -24,8 +24,8 @@ run_cartridge_rust: build_cartridge_rust
 	cartridge start
 
 build_cartridge_rust: export LUA_CPATH=$(workspace_root)/tokio-hyper/target/debug/lib?.dylib;$(workspace_root)/tokio-hyper/target/debug/lib?.so;;
-build_cartridge_rust: build_cargo
+build_cartridge_rust: tokio-hyper/target
 	cartridge build
 
-build_cargo:
+tokio-hyper/target:
 	cd tokio-hyper && cargo build
